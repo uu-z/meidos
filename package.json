@@ -1,0 +1,21 @@
+{
+  "name": "meidos",
+  "version": "0.0.1",
+  "description": "Your lovely and versatile Meidos",
+  "author": "nanoo",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon --exec npm run babel-node --watch ./ -- src/index.js",
+    "build": "rm dist/* ; babel ./src --out-dir dist",
+    "test": "jest",
+    "babel-node": "babel-node"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-env": "^1.1.6",
+    "jest": "^18.1.0",
+    "nodemon": "^1.11.0"
+  }
+}

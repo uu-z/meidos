@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -9,19 +9,29 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Message = function () {
-  function Message() {
+  function Message(event) {
     _classCallCheck(this, Message);
 
     this.messages = {};
+    this.event = event;
   }
 
   _createClass(Message, [{
-    key: "off",
-    value: function off(name) {
-      delete this.messages[name];
+    key: 'observer',
+    value: function observer(name, fn) {
+      if (this.event) {
+        this.event.emit('message:observer', name, fn);
+      }
+      return this;
     }
   }, {
-    key: "emit",
+    key: 'off',
+    value: function off(name) {
+      delete this.messages[name];
+      return this;
+    }
+  }, {
+    key: 'emit',
     value: function emit(name) {
       for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         args[_key - 1] = arguments[_key];
@@ -30,15 +40,17 @@ var Message = function () {
       this.messages[name] && this.messages[name].forEach(function (callback) {
         return callback.apply(undefined, args);
       });
+      return this;
     }
   }, {
-    key: "on",
+    key: 'on',
     value: function on(name, callback) {
       var topic = this.messages[name];
       if (!topic) {
         this.messages[name] = [];
       }
       this.messages[name].push(callback);
+      return this;
     }
   }]);
 

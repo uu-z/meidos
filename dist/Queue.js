@@ -9,20 +9,30 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Queue = function () {
-  function Queue() {
-    var concurrency = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-
+  function Queue(event) {
     _classCallCheck(this, Queue);
 
-    this.concurrency = concurrency;
+    this.concurrency = 1;
     this.running = 0;
     this.queue = [];
+    this.Event = event;
   }
 
   _createClass(Queue, [{
+    key: "set",
+    value: function set(field, value) {
+      this[field] = value;
+      return this;
+    }
+  }, {
     key: "push",
     value: function push(task) {
       this.queue.push(task);
+      return this;
+    }
+  }, {
+    key: "run",
+    value: function run() {
       this.next();
     }
   }, {
@@ -32,7 +42,7 @@ var Queue = function () {
 
       while (this.running < this.concurrency && this.queue.length) {
         var task = this.queue.shift();
-        task(function () {
+        task(this, function () {
           _this.running--;
           _this.next();
         });

@@ -11,7 +11,7 @@ describe('test', () => {
   })
 
   it('task should support async', () => {
-    const Task = new Queue(2)
+    const Task = new Queue()
     let count = 0
 
     Task.push(async next => {

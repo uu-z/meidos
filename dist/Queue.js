@@ -9,7 +9,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Queue = function () {
-  function Queue(concurrency) {
+  function Queue() {
+    var concurrency = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
     _classCallCheck(this, Queue);
 
     this.concurrency = concurrency;

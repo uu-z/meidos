@@ -1,5 +1,5 @@
 class Queue {
-  constructor(concurrency) {
+  constructor(concurrency = 1) {
     this.concurrency = concurrency
     this.running = 0
     this.queue = []

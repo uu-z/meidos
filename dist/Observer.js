@@ -21,11 +21,13 @@ var Observer = function () {
       this.observers.forEach(function (observer) {
         return observer(val);
       });
+      return this;
     }
   }, {
     key: "subscribe",
     value: function subscribe(fn) {
       this.observers.push(fn);
+      return this;
     }
   }]);
 

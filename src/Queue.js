@@ -6,8 +6,8 @@ class Queue {
     this.Event = event
   }
 
-  set(field, value){
-    this[field] = value
+  set(args){
+    Object.assign(this, args)
     return this
   }
 
@@ -16,8 +16,10 @@ class Queue {
     return this
   }
 
-  run() {
+  run(task) {
+    this.queue.push(task)
     this.next()
+    return this
   }
 
   next() {

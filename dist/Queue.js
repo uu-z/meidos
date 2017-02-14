@@ -20,8 +20,8 @@ var Queue = function () {
 
   _createClass(Queue, [{
     key: "set",
-    value: function set(field, value) {
-      this[field] = value;
+    value: function set(args) {
+      Object.assign(this, args);
       return this;
     }
   }, {
@@ -32,8 +32,10 @@ var Queue = function () {
     }
   }, {
     key: "run",
-    value: function run() {
+    value: function run(task) {
+      this.queue.push(task);
       this.next();
+      return this;
     }
   }, {
     key: "next",

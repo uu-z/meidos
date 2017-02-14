@@ -11,43 +11,44 @@ $ yarn add medios
 
 # Usage
 ```js
-import { Task } from 'medios'
+import { Queue } from 'medios'
 
-const Task = new Queue(2)
-let count = 0
+const Task = new Queue()
+  let count = 0
 
-Task.push(async next => {
-  expect(++count).toBe(1)
-  await next()
-  expect(++count).toBe(4)
-})
-
-Task.push(next => {
-  expect(++count).toBe(2)
-  next()
-})
-
-Task.push( async next => {
-  await next()
-  expect(++count).toBe(5)
-})
-
-Task.push( next => {
-  expect(++count).toBe(3)
-})
+  Task
+    .set({concurrency: 1, isLog: true})
+    .run(async (ctx, next) => {
+      expect(++count).toBe(1)
+      await next()
+      expect(++count).toBe(4)
+    })
+    .run((ctx, next) => {
+      expect(++count).toBe(2)
+      next()
+    })
+    .run( async (ctx, next) => {
+      await next()
+      expect(++count).toBe(5)
+    })
+    .run((ctx, next) => {
+      expect(++count).toBe(3)
+    })
 ```
 
 ```js
 import { Message } from 'medios'
 
 const message = new Message()
-let count = 1
+  let count = 1
 
-message.on('set', (value) => {
-  count = value
-})
-message.emit('set', 1000)
-expect(count).toBe(1000)
+  message
+    .on('set', (value) => {
+      count = value
+    })
+    .emit('set', 1000)
+      expect(count).toBe(1000)
+    })
 
 ```
 
@@ -56,13 +57,14 @@ import  { Observer } from 'medios'
 
 const observer = new Observer()
 
-observer.subscribe(val => {
-  expect(++val).toBe(2)
-})
+const observer = new Observer()
 
-observer.subscribe(val => {
-  expect(--val).toBe(0)
-})
-
-observer.publish(1)
+  observer
+    .subscribe(val => {
+      expect(++val).toBe(2) 
+    })
+    .subscribe(val => {
+      expect(--val).toBe(0)
+    })
+    .publish(1)
 ```

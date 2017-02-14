@@ -17,7 +17,7 @@ const Task = new Queue()
   let count = 0
 
   Task
-    .set({concurrency: 1, isLog: true})
+    .set({concurrency: 1})
     .run(async (ctx, next) => {
       expect(++count).toBe(1)
       await next()
@@ -54,8 +54,6 @@ const message = new Message()
 
 ```js
 import  { Observer } from 'medios'
-
-const observer = new Observer()
 
 const observer = new Observer()
 

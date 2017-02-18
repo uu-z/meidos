@@ -6,12 +6,12 @@ Your lovely and versatile Meidos
 
 # install
 ```
-$ yarn add medios
+$ yarn add meidos
 ```
 
 # Usage
 ```js
-import { Queue } from 'medios'
+import { Queue } from 'meidos'
 
 const Task = new Queue()
   let count = 0
@@ -37,7 +37,7 @@ const Task = new Queue()
 ```
 
 ```js
-import { Message } from 'medios'
+import { Message } from 'meidos'
 
 const message = new Message()
   let count = 1
@@ -53,7 +53,7 @@ const message = new Message()
 ```
 
 ```js
-import  { Observer } from 'medios'
+import  { Observer } from 'meidos'
 
 const observer = new Observer()
 

@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -17,21 +17,13 @@ var Message = function () {
   }
 
   _createClass(Message, [{
-    key: 'observer',
-    value: function observer(name, fn) {
-      if (this.event) {
-        this.event.emit('message:observer', name, fn);
-      }
-      return this;
-    }
-  }, {
-    key: 'off',
+    key: "off",
     value: function off(name) {
       delete this.messages[name];
       return this;
     }
   }, {
-    key: 'emit',
+    key: "emit",
     value: function emit(name) {
       for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         args[_key - 1] = arguments[_key];
@@ -43,7 +35,7 @@ var Message = function () {
       return this;
     }
   }, {
-    key: 'on',
+    key: "on",
     value: function on(name, callback) {
       var topic = this.messages[name];
       if (!topic) {

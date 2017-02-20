@@ -4,13 +4,6 @@ class Message {
     this.event = event
   }
 
-  observer(name, fn) {
-    if(this.event) {
-      this.event.emit('message:observer', name, fn)
-    }
-    return this
-  }
-
   off(name) {
     delete this.messages[name]
     return this
